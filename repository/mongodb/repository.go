@@ -65,7 +65,7 @@ func (r *mongoRepository) Find(code string) (*shortener.Redirect, error) {
 func (r *mongoRepository) Store(redirect *shortener.Redirect) error {
 	ctx, cancel := context.WithTimeout(context.Background(), r.timeout)
 	defer cancel()
-	collection := r.client.Database((r.database)).Collection("redirects")
+	collection := r.client.Database(r.database).Collection("redirects")
 	_, err := collection.InsertOne(
 		ctx,
 		bson.M{
